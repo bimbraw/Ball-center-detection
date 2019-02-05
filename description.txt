@@ -1,6 +1,8 @@
 -> Created an image processing script that helps identify location of a ball from laptop webcam.
 
-Tracking done using contour detection
-Center point labelled on the real time "video"
+Tracking done using contour detection.
+Center point labelled on the real time "video".
 
 Done using Python in Ubuntu 16.04 using ROS.
+
+Used a yellow plastic ball for this project.
