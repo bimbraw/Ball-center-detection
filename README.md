@@ -1,4 +1,4 @@
-# Yellow_Ball_center_detection
+# Ball_center_detection
 
 Ball tracking and center point detection using laptop webcam.
 
