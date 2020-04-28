@@ -10,15 +10,19 @@ import time
  
 # construct the argument parse and parse the arguments
 ap = argparse.ArgumentParser()
-ap.add_argument("-b", "--buffer", type=int, default=64,
-	help="max buffer size")
+ap.add_argument("-b", "--buffer", type=int, default=64, help="max buffer size")
 args = vars(ap.parse_args())
 
 # define the lower and upper boundaries of the yellow frisbee
 # in the HSV color space, then initialize the
 # list of tracked points
-yellowLower = (20, 50, 50)
+yellowLower = (20, 100, 100)
 yellowUpper = (40, 255, 255)
+
+#yellowLower = (0, 0, 150)
+#yellowUpper = (0, 0, 255)
+
+
 pts = deque(maxlen=args["buffer"])
 
 # grabbing the reference to the webcam
@@ -28,7 +32,7 @@ cap = VideoStream(src=0).start()
 time.sleep(2.0)
 
 while(True):
-    	# grabbing the current frame
+    # grabbing the current frame
 	frame = cap.read()
 
 	# handling the frame from VideoCapture
@@ -60,16 +64,16 @@ while(True):
 		font = cv2.FONT_HERSHEY_SCRIPT_SIMPLEX
 		
 		# displaying text on the center marker
-		cv2.putText(frame,'center',center,font,1,(50,50,50),2,cv2.LINE_AA)
+		cv2.putText(frame,'.',center,font,1,(50,50,50),2,cv2.LINE_AA)
 		
-		print center
+		#print center
 
 		# only proceed if the radius meets a minimum size, changed to 10 for far away cases
-		if radius > 40:
+		if radius > 20:
 			# drawing the circle and centroid on the frame
 			cv2.circle(frame, (int(x), int(y)), int(radius),
-				(0, 255, 255), 2)
-			cv2.circle(frame, center, 5, (0, 0, 255), -1)
+				(0, 0, 0), 2)
+			cv2.circle(frame, center, 5, (0, 0, 0), -1)
 
 	# updating the points queue
 	pts.appendleft(center)
